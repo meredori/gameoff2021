@@ -31,10 +31,6 @@ module.exports = {
                 }
               },
               {
-                test: /\.jsx$/,
-                use: ["babel-loader"]
-              },
-              {
                 test: /\.scss$/,
                 use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
                 generator: {
