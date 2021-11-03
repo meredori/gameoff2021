@@ -1,6 +1,10 @@
 import "./style.scss";
-var frameCount = 0;
-var fight = false;
+import { updateUI } from "./features/interface/interface";
+import { takeTurn } from "./features/combat/combat";
+import globals from "./features/globals/vars";
+import "./features/enemy/enemy";
+
+var frameCount = globals.frameCount;
 //create game loop
 const gameLoop = () => {
   //update
@@ -15,10 +19,12 @@ function update() {
     if(frameCount % 60 === 0) {
         console.log(frameCount);
         frameCount = 0;
-        if(fight){
+        if(globals.fight){
             console.log("fight");
+            takeTurn();
         }
     }
+    updateUI();
 }
 function render() {}
 function requestAnimationFrame(callback) {
@@ -26,12 +32,3 @@ function requestAnimationFrame(callback) {
 }
 gameLoop();
 
-document.getElementById("fight-button").onclick = () => {
-  fight = !fight;
-  if(fight){
-        document.getElementById("fight-button").innerHTML = "Stop";
-  }
-  else{
-        document.getElementById("fight-button").innerHTML = "Fight";
-  }
-}
